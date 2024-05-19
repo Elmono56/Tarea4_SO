@@ -1,4 +1,7 @@
 // malloc.h
+#include <stdio.h>
+#include <unistd.h>
+
 typedef long Align; // alineamiento al límite superior
 union header {      // encabezado de bloque
   struct {
@@ -78,4 +81,18 @@ void *malloc(unsigned long nbytes) {
       if ((p = morecore(nunits)) == NULL)
         return NULL; // nada libre
   }
+}
+
+// Función de depuración para imprimir los bloques de memoria
+void print_memory_blocks() {
+  Header *p = freep;
+  if (p == NULL) {
+    printf("No hay bloques libres.\n");
+    return;
+  }
+  printf("Bloques libres:\n");
+  do {
+    printf("Bloque en %p, tamaño: %u unidades\n", (void *)p, p->s.size);
+    p = p->s.ptr;
+  } while (p != freep);
 }
