@@ -1,1 +1,4 @@
 # Tarea4_SO
+1. Modifique el código de alloc(n,i), para que permita dos áreas de asignación de memoria independientes, identificadas por la i, pero que compartan la misma pila. Un área asigna de arriba hacia abajo y la otra de abajo hacia arriba en la pila. Cuando ambas se unen es porque la pila está llena.
+2. Escriba un rutina debug que permita imprimir la información de los diferentes bloques que componen la memoria asignada y libre, utilizando malloc.
+3. Modifique el código de malloc para aplicar la estrategia del "siguiente ajuste" (next fit), el cuál no se devuelve al inicio para realizar la búsqueda del bloque. Escriba un programa de ejemplo para mostrar la ejecución correcta de su modificación.
