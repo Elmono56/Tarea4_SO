@@ -1,4 +1,7 @@
 // alloc.h
+#include <stdio.h>
+#include <unistd.h>
+
 #define ALLOCSIZE 10000 // tamaño del espacio disponible
 
 static char allocbuf[ALLOCSIZE]; // almacenamiento para alloc
@@ -36,4 +39,12 @@ void afree(char *p, int i) { // libera la memoria apuntada por p
       allocp_bottom = p + ALLOCSIZE - (allocbuf + ALLOCSIZE);
     }
   }
+}
+
+// Función de depuración para imprimir la información de los bloques de memoria
+void print_memory_info() {
+  printf("Información de los bloques de memoria:\n");
+  printf("Puntero de arriba: %p\n", allocp_top);
+  printf("Puntero de abajo: %p\n", allocp_bottom);
+  printf("Espacio libre en la pila entre ambos: %ld bytes\n", allocp_bottom - allocp_top)
 }
