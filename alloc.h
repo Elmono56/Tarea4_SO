@@ -13,15 +13,19 @@ char *alloc(int n, int i) {
     if (allocp_top + n <= allocp_bottom) { //hay espacio en pila
       allocp_top += n;
       return allocp_top - n;
-    } else
-        return 0; // no hay suficiente espacio  
+    } else{
+        printf("No hay suficiente espacio\n\n");
+        return 0; // no hay suficiente espacio
+    }
   }
   else if (i == 1) { // asignación desde el final (de abajo hacia arriba)
     if (allocp_bottom - n >= allocp_top) { //hay espacio en pila
       allocp_bottom -= n;
       return allocp_bottom;
-    } else
+    } else{
+        printf("No hay suficiente espacio\n\n");
         return 0; // no hay suficiente espacio
+    }
   }
   else { // valor de i inválido
     return 0; 
@@ -46,5 +50,5 @@ void print_memory_info() {
   printf("Información de los bloques de memoria:\n");
   printf("Puntero de arriba: %p\n", allocp_top);
   printf("Puntero de abajo: %p\n", allocp_bottom);
-  printf("Espacio libre en la pila entre ambos: %ld bytes\n", allocp_bottom - allocp_top)
+  printf("Espacio libre en la pila entre ambos: %ld bytes\n\n\n", allocp_bottom - allocp_top);
 }

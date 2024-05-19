@@ -14,8 +14,12 @@ int main() {
     arreglo[i] = 10 * i;
   for (int i = 0; i < 10; i++)
     printf("%i\n", arreglo[i]);
-  afree((char *)arreglo, 0);
-
+  
+  print_memory_info();
+  afree((char *)arreglo, 0); //liberar espacio arreglo
+  printf("\n");
+  print_memory_info();
+  
   // Asignación de memoria desde el final (de abajo hacia arriba)
   arreglo = (int *)alloc(sizeof(int) * 10, 1);
   if (arreglo == NULL) {
@@ -29,6 +33,13 @@ int main() {
 
   // Imprimir información de depuración
   print_memory_info();
+  printf("\n");
+
+  int* extra1 = (int *)alloc(sizeof(int) * 2490, 1); //llenar pila
+  // Imprimir información de depuración
+  print_memory_info();
+
+  int* extra2 = (int *)alloc(sizeof(int) * 10, 1); //overflow
 
   return 0;
 }
